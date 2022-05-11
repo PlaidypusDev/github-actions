@@ -1,0 +1,46 @@
+on:
+  workflow_call:
+    inputs:
+      container_name:
+        required: true
+        type: string
+      service_name:
+        required: true
+        type: string
+      gcp_project_id:
+        required: true
+        type: string
+    secrets:
+      GCP_SA_KEY:
+        required: true
+    outputs:
+      cloud_run_url:
+        description: "The URL of the deployed Cloud Run application"
+        value: ${{ jobs.deploy_to_cloud_run.outputs.cloud_run_url }}
+
+jobs:
+  deploy_to_cloud_run:
+    name: Deploy to Cloud Run
+    runs-on: ubuntu-latest
+    outputs:
+      cloud_run_url: ${{ steps.deploy.outputs.url }}
+    steps:
+      - name: Configure Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0
+        with:
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
+
+      - name: Get access token from Google Cloud SDK
+        id: gcloud-access-token
+        run: |
+          access_token=$(gcloud auth application-default print-access-token --project ${{ inputs.gcp_project_id }})
+          echo "::add-mask::$access_token"
+          echo "::set-output name=access_token::$access_token"
+
+      - name: Deploy to Cloud Run
+        id: deploy
+        uses: google-github-actions/deploy-cloudrun@main
+        with:
+          service: ${{ inputs.service_name }}
+          image: gcr.io/${{ inputs.gcp_project_id }}/${{ inputs.container_name }}:${{github.run_number}}-${{github.sha}}
