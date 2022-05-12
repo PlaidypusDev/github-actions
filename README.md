@@ -6,6 +6,7 @@ This repository contains GitHub actions that can be reused across projects
 
 - [Deploy to Cloud Run](#deploy-to-cloud-run)
 - [Remove old container images](#remove-old-containers-images)
+- [Conventional commit lint POR](#conventional-commit-lint-pr)
 
 ## Deploy to Cloud Run
 
@@ -45,3 +46,15 @@ Secrets:
 | Name | Description | Required |
 | ---- | ----------- | -------- |
 | GCP_SA_KEY | The JSON service account key | ✅ |
+
+## Conventional Commit Lint PR
+
+`.github/workflows/conventional-commit-lint-pr.yml`
+This workflow lints PRs created with a conventional commit title.
+
+Inputs:
+| Name | Description | Required |
+| ---- | ----------- | -------- |
+| jira_key | The JIRA key to check for when checking the ticket number. Example, `PLAN`. | ✅ |
+| require_scope | Require the conventional commit scope to be in the PR title | ❌ Defaults to `false` |
+| validate_single_commit | See [https://github.com/amannn/action-semantic-pull-request#configuration](https://github.com/amannn/action-semantic-pull-request#configuration) | ❌ Defaults to `true` |

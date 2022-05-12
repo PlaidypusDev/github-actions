@@ -1,0 +1,40 @@
+on:
+  workflow_call:
+    inputs:
+      jira_key:
+        required: true
+        type: string
+      require_scope:
+        required: false
+        type: boolean
+        default: false
+      validate_single_commit:
+        required: false
+        type: boolean
+        default: true
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: amannn/action-semantic-pull-request@v4.2.0 # funny number
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          types: |
+            build
+            ci
+            docs
+            feat
+            fix
+            perf
+            refactor
+            test
+          requireScope: ${{ inputs.require_scope }}
+          subjectPattern: ^((([${{ inputs.jira_key }}]{1,10})-?)[A-Z]+-\d+ .*)$
+          subjectPatternError: |
+            The subject "{subject}" found in the pull request title "{title}"
+            didn't match the configured pattern. Please ensure that the subject
+            starts with a Jira issue key for the Big Creek (e.g. "BC-123")
+            projet followed by a space, followed by a description.
+          validateSingleCommit: ${{ inputs.validate_single_commit }}
