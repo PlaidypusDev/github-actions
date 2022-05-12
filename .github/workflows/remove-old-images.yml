@@ -1,0 +1,41 @@
+on:
+  workflow_call:
+    inputs:
+      image_repo:
+        required: true
+        type: string
+      gcp_project_id:
+        required: true
+        type: string
+      remove_images_keep:
+        required: false
+        default: "10"
+        type: string
+      remove_images_grace:
+        required: false
+        default: "336h"
+        type: string
+    secrets:
+      GCP_SA_KEY:
+        required: true
+
+jobs:
+  remove_old_images:
+    name: Remove old container images
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0
+        with:
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
+
+      - name: Get access token from Google Cloud SDK
+        id: gcloud-access-token
+        run: |
+          access_token=$(gcloud auth application-default print-access-token --project ${{ inputs.gcp_project_id }})
+          echo "::add-mask::$access_token"
+          echo "::set-output name=access_token::$access_token"
+
+      - name: Remove old images
+        run: docker run -i us-docker.pkg.dev/gcr-cleaner/gcr-cleaner/gcr-cleaner-cli --allow-tagged --keep ${{ inputs.remove_images_keep }} --repo gcr.io/${{ inputs.gcp_project_id }}/${{ inputs.image_repo }} --grace ${{ inputs.remove_images_grace }} --token ${{ steps.gcloud-access-token.outputs.access_token }}
