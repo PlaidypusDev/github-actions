@@ -6,7 +6,7 @@ This repository contains GitHub actions that can be reused across projects
 
 - [Deploy to Cloud Run](#deploy-to-cloud-run)
 - [Remove old container images](#remove-old-containers-images)
-- [Conventional commit lint POR](#conventional-commit-lint-pr)
+- [Conventional commit lint PR](#conventional-commit-lint-pr)
 
 ## Deploy to Cloud Run
 
