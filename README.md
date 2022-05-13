@@ -36,7 +36,7 @@ This workflow removes images from the Google Cloud container registry when they 
 
 Inputs:
 | Name | Description | Required | Default |
-| ---- | ----------- | :------: | ------: |
+| ---- | ----------- | :------: | ------- |
 | gcp_project_id | The project ID for the Google Cloud project containing the Cloud Run instance | ✅ | `N/A` |
 | image_repo | The name of the image repository to remove images from | ✅ | `N/A` |
 | remove_images_keep | How many images should be in the repository at a time | ❌ | `"10"` |
