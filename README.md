@@ -19,14 +19,14 @@ Download the keys as JSON for the compute engine service account that gets creat
 
 Inputs:
 | Name | Description | Required |
-| ---- | ----------- | -------- |
+| ---- | ----------- | :------: |
 | container_name | The tag of the built container to deploy | ✅ |
 | service_name | The name of the Cloud Run instance | ✅ |
 | gcp_project_id | The project ID for the Google Cloud project containing the Cloud Run instance | ✅ |
 
 Secrets:
 | Name | Description | Required |
-| ---- | ----------- | -------- |
+| ---- | ----------- | :------: |
 | GCP_SA_KEY | The JSON service account key | ✅ |
 
 ## Remove old containers images
@@ -35,16 +35,16 @@ Secrets:
 This workflow removes images from the Google Cloud container registry when they meet a specified age criteria.
 
 Inputs:
-| Name | Description | Required |
-| ---- | ----------- | -------- |
-| gcp_project_id | The project ID for the Google Cloud project containing the Cloud Run instance | ✅ |
-| image_repo | The name of the image repository to remove images from | ✅ |
-| remove_images_keep | How many images should be in the repository at a time | ❌ Defaults to `"10"` |
-| remove_images_grace | Don't remove containers that are younger than this time. The format is `<hours>h` | ❌ Defaults to `"336h"` |
+| Name | Description | Required | Default |
+| ---- | ----------- | :------: | ------: |
+| gcp_project_id | The project ID for the Google Cloud project containing the Cloud Run instance | ✅ | `N/A` |
+| image_repo | The name of the image repository to remove images from | ✅ | `N/A` |
+| remove_images_keep | How many images should be in the repository at a time | ❌ | `"10"` |
+| remove_images_grace | Don't remove containers that are younger than this time. The format is `<hours>h` | ❌ | `"336h"` |
 
 Secrets:
 | Name | Description | Required |
-| ---- | ----------- | -------- |
+| ---- | ----------- | :------: |
 | GCP_SA_KEY | The JSON service account key | ✅ |
 
 ## Conventional Commit Lint PR
@@ -53,8 +53,8 @@ Secrets:
 This workflow lints PRs created with a conventional commit title.
 
 Inputs:
-| Name | Description | Required |
-| ---- | ----------- | -------- |
-| jira_key | The JIRA key to check for when checking the ticket number. Example, `PLAN`. | ✅ |
-| require_scope | Require the conventional commit scope to be in the PR title | ❌ Defaults to `false` |
-| validate_single_commit | See [https://github.com/amannn/action-semantic-pull-request#configuration](https://github.com/amannn/action-semantic-pull-request#configuration) | ❌ Defaults to `true` |
+| Name | Description | Required | Default |
+| ---- | ----------- | :------: | ------- |
+| jira_key | The JIRA key to check for when checking the ticket number. Example, `PLAN`. | ✅ | `N/A` |
+| require_scope | Require the conventional commit scope to be in the PR title | ❌ | `false` |
+| validate_single_commit | See [https://github.com/amannn/action-semantic-pull-request#configuration](https://github.com/amannn/action-semantic-pull-request#configuration) | ❌ | `true` |
