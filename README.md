@@ -7,6 +7,7 @@ This repository contains GitHub actions that can be reused across projects
 - [Deploy to Cloud Run](#deploy-to-cloud-run)
 - [Remove old container images](#remove-old-containers-images)
 - [Conventional commit lint PR](#conventional-commit-lint-pr)
+- [Publish to container registry](#publish-to-container-registry)
 
 ## Deploy to Cloud Run
 
@@ -47,7 +48,7 @@ Secrets:
 | ---- | ----------- | :------: |
 | GCP_SA_KEY | The JSON service account key | ✅ |
 
-## Conventional Commit Lint PR
+## Conventional commit lint PR
 
 `.github/workflows/conventional-commit-lint-pr.yml`
 This workflow lints PRs created with a conventional commit title.
@@ -58,3 +59,15 @@ Inputs:
 | jira_key | The JIRA key to check for when checking the ticket number. Example, `PLAN`. | ✅ | `N/A` |
 | require_scope | Require the conventional commit scope to be in the PR title | ❌ | `false` |
 | validate_single_commit | See [https://github.com/amannn/action-semantic-pull-request#configuration](https://github.com/amannn/action-semantic-pull-request#configuration) | ❌ | `true` |
+
+## Publish to container registry
+
+`.github/workflows/publish-to-container-registry.yml`
+This workflow publishes a Docker container to a Google Cloud container registry.
+
+Inputs:
+| Name | Description | Required |
+| ---- | ----------- | -------- |
+| gcp_project_id | The project ID for the Google Cloud project containing the Cloud Run instance | ✅ |
+| container_tag | The tag of the built Docker container to publish | ✅ |
+| repository_name | The nam eof the container registry repository to publish to | ✅ |

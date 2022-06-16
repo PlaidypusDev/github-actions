@@ -30,6 +30,7 @@ jobs:
             perf
             refactor
             test
+            chore
           requireScope: ${{ inputs.require_scope }}
           subjectPattern: ^((([${{ inputs.jira_key }}]{1,10})-?)[A-Z]+-\d+ .*)$
           subjectPatternError: |

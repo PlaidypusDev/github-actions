@@ -1,0 +1,33 @@
+on:
+  workflow_call:
+    inputs:
+      container_tag:
+        required: true
+        type: string
+      gcp_project_id:
+        required: true
+        type: string
+      repository_name:
+        required: true
+        type: string
+    secrets:
+      GCP_SA_KEY:
+        required: true
+
+jobs:
+  publish_to_container_registry:
+    name: Publish to container registry
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0
+        with:
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
+
+      - name: Build and publish Docker image to container registry
+        uses: mattes/gce-docker-push-action@v1
+        with:
+          creds: ${{ secrets.GCP_SA_KEY }}
+          src: ${{ inputs.container_tag }}
+          dst: gcr.io/${{ inputs.gcp_project_id }}/${{ inputs.repository_name }}:${{github.run_number}}-${{github.sha}}
