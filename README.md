@@ -67,7 +67,7 @@ This workflow publishes a Docker container to a Google Cloud container registry.
 
 Inputs:
 | Name | Description | Required |
-| ---- | ----------- | -------- |
+| ---- | ----------- | :------: |
 | gcp_project_id | The project ID for the Google Cloud project containing the Cloud Run instance | ✅ |
 | container_tag | The tag of the built Docker container to publish | ✅ |
 | repository_name | The nam eof the container registry repository to publish to | ✅ |
