@@ -4,10 +4,22 @@ This repository contains GitHub actions that can be reused across projects
 
 ## Workflows available:
 
+- [Conventional commit lint PR](#conventional-commit-lint-pr)
 - [Deploy to Cloud Run](#deploy-to-cloud-run)
 - [Remove old container images](#remove-old-containers-images)
-- [Conventional commit lint PR](#conventional-commit-lint-pr)
 - [Publish to container registry](#publish-to-container-registry)
+
+## Conventional commit lint PR
+
+[`conventional-commit-lint-pr.yml`](.github/workflows/conventional-commit-lint-pr.yml)
+
+This workflow lints PRs created with a conventional commit title. When using the "squash and merge" strategy, make sure to configure the repository to use the setting: [Default to PR title for squash merge commits](https://github.blog/changelog/2022-05-11-default-to-pr-titles-for-squash-merge-commit-messages/). For context, please read [this section](https://github.com/marketplace/actions/semantic-pull-request#legacy-configuration) of the `semantic-pull-request` action documentation.
+
+Inputs:
+| Name | Description | Required | Default |
+| ---- | ----------- | :------: | ------- |
+| jira_key | The JIRA key to check for when checking the ticket number. Example, `PLAN`. | ✅ | `N/A` |
+| require_scope | Require the conventional commit scope to be in the PR title | ❌ | `false` |
 
 ## Deploy to Cloud Run
 
@@ -50,17 +62,6 @@ Secrets:
 | ---- | ----------- | :------: |
 | GCP_SA_KEY | The JSON service account key | ✅ |
 
-## Conventional commit lint PR
-
-[`conventional-commit-lint-pr.yml`](.github/workflows/conventional-commit-lint-pr.yml)
-
-This workflow lints PRs created with a conventional commit title. When using the "squash and merge" strategy, make sure to configure the repository to use the setting: [Default to PR title for squash merge commits](https://github.blog/changelog/2022-05-11-default-to-pr-titles-for-squash-merge-commit-messages/). For context, please read [this section](https://github.com/marketplace/actions/semantic-pull-request#legacy-configuration) of the `semantic-pull-request` action documentation.
-
-Inputs:
-| Name | Description | Required | Default |
-| ---- | ----------- | :------: | ------- |
-| jira_key | The JIRA key to check for when checking the ticket number. Example, `PLAN`. | ✅ | `N/A` |
-| require_scope | Require the conventional commit scope to be in the PR title | ❌ | `false` |
 
 ## Publish to container registry
 
