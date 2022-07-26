@@ -50,15 +50,15 @@ Secrets:
 
 ## Conventional commit lint PR
 
-`.github/workflows/conventional-commit-lint-pr.yml`
-This workflow lints PRs created with a conventional commit title.
+[`conventional-commit-lint-pr.yml`](.github/workflows/conventional-commit-lint-pr.yml)
+
+This workflow lints PRs created with a conventional commit title. When using the "squash and merge" strategy, make sure to configure the repository to use the setting: [Default to PR title for squash merge commits](https://github.blog/changelog/2022-05-11-default-to-pr-titles-for-squash-merge-commit-messages/). For context, please read [this section](https://github.com/marketplace/actions/semantic-pull-request#legacy-configuration) of the `semantic-pull-request` action documentation.
 
 Inputs:
 | Name | Description | Required | Default |
 | ---- | ----------- | :------: | ------- |
 | jira_key | The JIRA key to check for when checking the ticket number. Example, `PLAN`. | ✅ | `N/A` |
 | require_scope | Require the conventional commit scope to be in the PR title | ❌ | `false` |
-| validate_single_commit | See [https://github.com/amannn/action-semantic-pull-request#configuration](https://github.com/amannn/action-semantic-pull-request#configuration) | ❌ | `true` |
 
 ## Publish to container registry
 
