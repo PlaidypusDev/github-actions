@@ -11,7 +11,8 @@ This repository contains GitHub actions that can be reused across projects
 
 ## Deploy to Cloud Run
 
-`.github/workflows/deploy-to-cloud-run.yml` <br>
+[`deploy-to-cloud-run.yml`](.github/workflows/deploy-to-cloud-run.yml)
+
 This workflow will deploy a given container to Cloud Run and clean out the old images from the container registry after successfully deploying.
 
 ### Setting up the Google Cloud project
@@ -32,7 +33,8 @@ Secrets:
 
 ## Remove old containers images
 
-`.github/workflows/remove-old-images.yml`
+[`remove-old-images.yml`](.github/workflows/remove-old-images.yml)
+
 This workflow removes images from the Google Cloud container registry when they meet a specified age criteria.
 
 Inputs:
@@ -62,7 +64,8 @@ Inputs:
 
 ## Publish to container registry
 
-`.github/workflows/publish-to-container-registry.yml`
+[`publish-to-container-registry.yml`](.github/workflows/publish-to-container-registry.yml)
+
 This workflow publishes a Docker container to a Google Cloud container registry.
 
 Inputs:
