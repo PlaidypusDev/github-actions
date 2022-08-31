@@ -43,7 +43,7 @@ Secrets:
 | ---- | ----------- | :------: |
 | GCP_SA_KEY | The JSON service account key | ✅ |
 
-## Remove old containers images
+## Remove old container  images
 
 [`remove-old-images.yml`](.github/workflows/remove-old-images.yml)
 
@@ -54,6 +54,7 @@ Inputs:
 | ---- | ----------- | :------: | ------- |
 | gcp_project_id | The project ID for the Google Cloud project containing the Cloud Run instance | ✅ | `N/A` |
 | image_repo | The name of the image repository to remove images from | ✅ | `N/A` |
+| tag_filter_regex | Only images with at least one tag that matches this given regular expression will be deleted | ❌ | `".*"` |
 | remove_images_keep | How many images should be in the repository at a time | ❌ | `"10"` |
 | remove_images_grace | Don't remove containers that are younger than this time. The format is `<hours>h` | ❌ | `"336h"` |
 
