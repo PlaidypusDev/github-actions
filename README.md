@@ -1,6 +1,12 @@
 # Reusable GitHub actions
 
-This repository contains GitHub actions that can be reused across projects
+This repository contains [reusable GitHub actions](https://docs.github.com/en/actions/using-workflows/reusing-workflows) that can be reused across projects
+
+## Links
+
+- Reusable workflow documentation: https://docs.github.com/en/actions/using-workflows/reusing-workflows
+- Inputs and secrets in reusable workflow: https://docs.github.com/en/actions/using-workflows/reusing-workflows#using-inputs-and-secrets-in-a-reusable-workflow
+- Outputs for reusable workflows: https://docs.github.com/en/actions/using-workflows/reusing-workflows#using-outputs-from-a-reusable-workflow
 
 ## Workflows available:
 
@@ -43,7 +49,7 @@ Secrets:
 | ---- | ----------- | :------: |
 | GCP_SA_KEY | The JSON service account key | ✅ |
 
-## Remove old container  images
+## Remove old container images
 
 [`remove-old-images.yml`](.github/workflows/remove-old-images.yml)
 
@@ -62,7 +68,6 @@ Secrets:
 | Name | Description | Required |
 | ---- | ----------- | :------: |
 | GCP_SA_KEY | The JSON service account key | ✅ |
-
 
 ## Publish to container registry
 
