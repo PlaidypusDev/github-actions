@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/PlaidypusDev/github-actions/compare/v1.0.0...v1.1.0) (2023-03-17)
+
+
+### Features
+
+* BOFA-26 update remove-old-images workflow with tag-filter-any input ([#4](https://github.com/PlaidypusDev/github-actions/issues/4)) ([58fe7e8](https://github.com/PlaidypusDev/github-actions/commit/58fe7e8874ac017959f6a3008fe1d08e3bf10b8c))
+
 ## 1.0.0 (2022-07-26)
 
 
